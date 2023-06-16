@@ -1,43 +1,45 @@
 // create 5 burgers (at least 3 should be beef)
-
+db.burgers.insertMany ({..})
 
 // find all the burgers
-
+db.burgers.find ({})
 
 // show just the meat of each burger
-
+db.burgers.find ({}, {meat})
 
 // show just the toppings of each burger
-
+db.burgers.find ({}, {toppings})
 
 // show everything but the cheese
-
+db.burgers.find ({}, {meat, toppings})
 
 // find all the burgers with beef
-
+db.burgers.find ({ meat: 'beef'})
 
 // find all the burgers that are not beef
-
+db.burgers.find ({meat: { $nin: 'beef'}})
 
 // find the first burger with cheese
-
+db.burgers.find({}).sort({"cheese": -1})
 
 // find one and update the first burger with cheese to have a property of 'double cheese'
-
+db.burgers.update({_id: ObjectId("")}, {$set: {cheese: 'double cheese'}})
 
 // find the burger you updated to have double cheese
-
+db.burgers.find({"_id" :});
 
 // find and update all the beef burgers to be 'veggie'
-
-
+db.employees.updateMany({}, 
+    { $set: {"meat.$[element]":"veggie"}},
+    { arrayFilters: [{ element: "beef" }]})
 // delete one of your veggie burgers
 // BEWARE: db.burger.remove({meat: 'veggie'}) DELETES ALL!!!  DO NOT USE!
-
+db.orders.deleteOne({ "veggie" })
 
 // drop the collection
 //Expected Output
 //true
+db.burgers.drop()
 
 // drop the database
 //Expected Output
@@ -45,6 +47,7 @@
 //   "dropped": "burgers",
 //   "ok": 1
 // }
+db.dropDatabase
 
 
 //
